@@ -2262,12 +2262,7 @@ def create_orgs_entities_and_affiliations(client, jwt, count):
         rv = client.post('/api/v1/orgs', data=json.dumps(new_org),
                          headers=headers, content_type='application/json')
         dictionary = json.loads(rv.data)
-        print("*"*80)
-        print("*" * 80)
         org_id = dictionary['id']
-        print(org_id)
-        print("*" * 80)
-        print("*" * 80)
 
         client.post('/api/v1/orgs/{}/affiliations'.format(org_id), headers=headers,
                     data=json.dumps(TestAffliationInfo.affiliation3), content_type='application/json')
@@ -2277,8 +2272,8 @@ def create_orgs_entities_and_affiliations(client, jwt, count):
 
 @pytest.mark.parametrize("expected_http_status, entries_count",
                          [
-                             (http_status.HTTP_200_OK, 3),
                              (http_status.HTTP_200_OK, 1),
+                             (http_status.HTTP_200_OK, 3),
                              (http_status.HTTP_200_OK, 0),
                          ],
                          ids=[
